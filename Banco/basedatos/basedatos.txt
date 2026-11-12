@@ -1,0 +1,65 @@
+﻿
+
+-- comentarios  SQL
+
+/*
+linea 1
+linea 2
+linea 3
+*/
+-- DDL - Lenguaje de definicion de datos(Create, alter, drop) crear la base base de datos
+
+create database BANCO
+use BANCO
+
+-- Crear tabla
+
+create table cliente
+(
+   codigo int primary key,  -- no puede ser nulo, no se puede repetir
+   nombre varchar(50) not null, -- not  null indica que es obligatorio
+   edad int null, 
+   saldo money 
+)
+
+create table cuentacliente
+(
+  codigo int primary key,
+  tipo varchar(20) not null,
+  codigocliente int foreign key references cliente(codigo)
+)
+
+-- DML lenguame de manipulacion de datos (insert, update, delete, select)
+-- Insert Agregar registros
+insert into cliente (codigo, nombre, edad, saldo)
+values (100, 'Juan Perez', 30, 600),
+       (200, 'Julieta Castro', 35, 800),
+       (300, 'Bryan Ruiz', 39, 100),
+       (400, 'Jean Morera', 25, 400)
+
+--Select para consultas
+select codigo, nombre from cliente
+select * from cliente 
+select * from cliente where edad >35
+select * from cliente where codigo = 400
+select AVG(edad) as Promedio from cliente
+select max(saldo) as Edad from cliente
+
+-- update Actualizar registros
+update cliente set edad = 55, saldo = 5000 where codigo = 100
+select * from cliente
+
+-- delete eliminar registros
+delete cliente where codigo = 200
+
+
+/*
+CRUD
+
+C - CREATE
+R - READ
+U - UPDATE
+D - BORRAR 
+
+
+*/
